@@ -16,24 +16,6 @@ This project is a minimal node-xpress app demonstrating internationalization (i1
 - i18n + Globalize.js
 - Pug template engine
 
-## 🗂️ Folder Structure
-
-├── app.js # Entry point
-├── controllers/
-│ └── HomeController.js
-├── middleware/
-│ ├── I18nMiddleware.js
-│ ├── LocaleMiddleware.js
-│ └── GlobalizeMiddleware.js
-├── routes/
-│ └── index.js
-├── views/
-│ └── index.pug
-├── locales/
-│ └── en-GH.json
-└── README.md
-
-
 ## 🚀 Usage
 
 1. **Install dependencies**
