@@ -1,0 +1,10 @@
+{
+  "greeting": "Hello, welcome to our app!",
+  "user": {
+    "welcome": "Welcome, {{name}}!"
+  },
+  "error": {
+    "notFound": "The requested resource was not found.",
+    "server": "An internal server error occurred."
+  }
+}

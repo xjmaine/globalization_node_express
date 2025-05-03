@@ -1,0 +1,6 @@
+{
+  "greeting": "Bonjour, bienvenue dans notre application !",
+  "user": {
+    "welcome": "Bienvenue, {{name}} !"
+  }
+}
