@@ -6,6 +6,9 @@ import locale_middleware from './middleware/locale_middleware.js';
 import globalize_middleware from './middleware/globalize_middleware.js';
 import { router as indexRouter } from './routes/index.js';
 import HomeController from './controllers/home_controller.js';
+import i18nextMiddleware from "i18next-http-middleware";
+import Backend from "i18next-node-fs-backend";
+import i18next from "i18next";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -26,9 +29,10 @@ export default class App {
   }
 
   // middleware initialization
-   middlewares() {
+   async middlewares() {
     this.app.use(express.json());
-    this.app.use(i18n_middleware.init());
+    const i18nMiddleware = await i18n_middleware.init();
+    this.app.use(i18nMiddleware);
     this.app.use(locale_middleware.setLocale());
     this.app.use(globalize_middleware.setGlobalize());
   }
