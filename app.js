@@ -1,10 +1,13 @@
 import express from 'express';
-import { join } from 'path';
-import I18nMiddleware from './middleware/i18n_middleware.js';
-import LocaleMiddleware from './middleware/locale_middleware.js';
-import GlobalizeMiddleware from './middleware/globalize_middleware.js';
-import indexRouter from './routes/index.js';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import i18n_middleware from './middleware/i18n_middleware.js';
+import locale_middleware from './middleware/locale_middleware.js';
+import globalize_middleware from './middleware/globalize_middleware.js';
+import { router as indexRouter } from './routes/index.js';
 import HomeController from './controllers/home_controller.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default class App {
   // const BASE_URL = process.env.BASE_URL;
@@ -23,11 +26,11 @@ export default class App {
   }
 
   // middleware initialization
-  middlewares() {
+   middlewares() {
     this.app.use(express.json());
-    this.app.use(I18nMiddleware.init());
-    this.app.use(LocaleMiddleware.setLocale());
-    this.app.use(GlobalizeMiddleware.setGlobalize());
+    this.app.use(i18n_middleware.init());
+    this.app.use(locale_middleware.setLocale());
+    this.app.use(globalize_middleware.setGlobalize());
   }
 
  ctlRoutes() {

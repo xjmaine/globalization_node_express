@@ -1,7 +1,10 @@
 import i18next from 'i18next';
 import i18nextMiddleware from 'i18next-http-middleware';
 import Backend from 'i18next-node-fs-backend';
-import { join } from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default class I18nMiddleware {
   static async init() {

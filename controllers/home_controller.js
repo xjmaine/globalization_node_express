@@ -8,6 +8,7 @@ export default class HomeController {
 
     // Globalize usage
     const formattedNumber = res.locals.globalize.formatNumber(number, { maximumFractionDigits: 2 });
+    // const currencyCode = 'GHC';
     const currencyCode = getCurrencyCode(req.getLocale());
     const formattedCurrency = res.locals.globalize.formatCurrency(amount, currencyCode);
 
