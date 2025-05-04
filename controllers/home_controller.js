@@ -1,6 +1,6 @@
-const {getCurrencyCode} = require('../utilities/localeUtils')
+import { getCurrencyCode } from '../utilities/currency_handler.js';
 
-class HomeController {
+export default class HomeController {
   getHomeData(req, res) {
     const number = 1234567.89;
     const amount = 99.99;
@@ -8,9 +8,8 @@ class HomeController {
 
     // Globalize usage
     const formattedNumber = res.locals.globalize.formatNumber(number, { maximumFractionDigits: 2 });
-    // const currencyCode = 'GHS'; // Base currency for all locales
     const currencyCode = getCurrencyCode(req.getLocale());
-    const formattedCurrency = res.locals.globalize.formatCurrency(amount, currencyCode)
+    const formattedCurrency = res.locals.globalize.formatCurrency(amount, currencyCode);
 
     const responseData = {
       greeting: req.__('greeting'),
@@ -20,7 +19,7 @@ class HomeController {
       locale: req.getLocale()
     };
 
-    //response
+    // Response
     const acceptHeader = req.get('Accept') || '';
     if (acceptHeader.includes('application/json')) {
       res.json(responseData);
@@ -31,7 +30,4 @@ class HomeController {
       });
     }
   }
-
 }
-
-module.exports = HomeController;

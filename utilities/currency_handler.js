@@ -1,4 +1,4 @@
-function getCurrencyCode(locale) {
+export function getCurrencyCode(locale) {
   switch (locale) {
     case 'en-GH':
       return 'GHS';
@@ -11,5 +11,3 @@ function getCurrencyCode(locale) {
       return 'GHS';
   }
 }
-
-module.exports = { getCurrencyCode };

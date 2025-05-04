@@ -1,14 +1,14 @@
-const express = require('express');
-const path = require('path');
-const I18nMiddleware = require('./middleware/I18nMiddleware');
-const LocaleMiddleware = require('./middleware/LocaleMiddleware');
-const GlobalizeMiddleware = require('./middleware/GlobalizeMiddleware');
-const indexRouter = require('./routes/index');
-const HomeController = require('./controllers/HomeController');
+import express from 'express';
+import { join } from 'path';
+import I18nMiddleware from './middleware/i18n_middleware.js';
+import LocaleMiddleware from './middleware/locale_middleware.js';
+import GlobalizeMiddleware from './middleware/globalize_middleware.js';
+import indexRouter from './routes/index.js';
+import HomeController from './controllers/home_controller.js';
 
-class App {
+export default class App {
   // const BASE_URL = process.env.BASE_URL;
-  constructor() {
+   constructor() {
     this.app = express();
     this.homeController = new HomeController();
     this.configure();
@@ -19,7 +19,7 @@ class App {
 
   configure() {
     this.app.set('view engine', 'pug'); // optional for views...comment out for API
-    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.set('views', join(__dirname, 'views'));
   }
 
   // middleware initialization
@@ -30,7 +30,7 @@ class App {
     this.app.use(GlobalizeMiddleware.setGlobalize());
   }
 
-  ctlRoutes() {
+ ctlRoutes() {
     this.app.use('/api/v1', indexRouter);
     this.app.get('/', this.homeController.getHomeData.bind(this.homeController));
   }
@@ -40,4 +40,4 @@ class App {
   }
 }
 
-module.exports = new App().getApp();
+export const app = new App().getApp();
